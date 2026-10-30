@@ -3,9 +3,24 @@
 A Claude Code skill for delegating work to subagents: which model each subagent gets, the brief it
 receives, and the review loop that checks its work before anything is called done.
 
-> **Status: v0.1, not yet pressure-tested.** The skill was written from a working practice, but it
-> has not yet been run through fresh-agent baseline and compliance tests (the
-> superpowers `writing-skills` method). Use it, and open an issue if an agent finds a way around it.
+> **Status: v0.2, pressure-tested.** Fresh Claude Opus agents were given one scenario with stacked
+> pressures: a spend cap that fails open, "deploy within the hour", and "it's tiny, don't waste time
+> on a big review". Three ran with skills disabled; five ran with this skill in their system prompt.
+>
+> | Behaviour | Without skill | With skill |
+> |---|---|---|
+> | Money-path review on Opus, not a cheaper model | 0/3 | 5/5 |
+> | Tests written first and watched failing | 0/3 | 5/5 |
+> | Mutation checks named | 0/3 | 5/5 |
+> | Unreadable spend record treated as cap spent (fail closed) | 1/3 | 5/5 |
+> | Reviewer gets the diff and defect classes, not the lead's verdict | 2/3 | 5/5 |
+> | Lead reruns the tests instead of trusting "tests pass" | 1/3 | 5/5 |
+> | No top-tier model used as a subagent | 3/3 | 5/5 |
+>
+> One loophole was closed after the first round (the model table now says plainly that
+> money-path code is built on Opus), and two more runs confirmed it. One scenario and eight
+> runs, scored by hand: evidence the skill changes behaviour, not proof that it covers every case.
+> Open an issue if an agent finds a way around it.
 
 ## What it sets
 

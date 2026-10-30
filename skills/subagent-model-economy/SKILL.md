@@ -16,7 +16,8 @@ treated as done until the lead has checked it.
 | Work | Model (always pass `model`) |
 |---|---|
 | Implement from a complete brief; draft plans or research | `sonnet` |
-| Independent read-only review; any code touching money, spend caps, the model-call path or frozen modules | `opus` |
+| Implement code that touches money, spend caps, the model-call path or frozen modules | `opus` |
+| Independent read-only review of any diff | `opus` |
 | Mechanical copying or formatting | `haiku` |
 | The top-tier model (e.g. Fable) | never as a subagent unless the user says so |
 
