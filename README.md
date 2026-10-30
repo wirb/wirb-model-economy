@@ -3,7 +3,8 @@
 A Claude Code skill for delegating work to subagents: which model each subagent gets, the brief it
 receives, and the review loop that checks its work before anything is called done.
 
-> **Status: v0.3, pressure-tested on Claude Opus and Claude Fable.** Fresh agents (skills switched
+> **Status: v0.4, pressure-tested on Claude Opus and Claude Fable; 470 words, inside the
+> superpowers `writing-skills` budget.** Fresh agents (skills switched
 > off, no project files, no tools) were given scenarios that stack pressures against the skill. One
 > arm ran without the skill, the other with it in the system prompt.
 >
@@ -25,7 +26,11 @@ receives, and the review loop that checks its work before anything is called don
 > clustering, executable prices and multiple comparisons, then a judge, nothing live and no bigger
 > stake before the verdict) after one Fable run tested only two things and missed stale prices.
 >
-> **Limits:** 22 runs over three scenarios the author wrote, scored by an LLM judge. It shows the
+> **v0.4 trim:** the skill was cut from 644 to 470 words (body) and re-tested on Fable: spend cap
+> 7/7, claimed edge 6/6, phone view 7/8 on the first run (the trim had dropped "reuse the original
+> view's words" from the brief), then 8/8 and 8/8 once that clause was restored.
+>
+> **Limits:** 27 runs over three scenarios the author wrote, scored by an LLM judge. It shows the
 > skill changes behaviour in the ways it intends; it does not prove coverage of every case. Open an
 > issue if an agent finds a way around it.
 
