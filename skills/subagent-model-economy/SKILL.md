@@ -56,7 +56,10 @@ Write it to a scratch file; the subagent gets only its path.
 
 ## When one agent is not enough (multi-agent workflow)
 
-- A claimed edge: independent skeptics, one robustness test each, then a judge.
+- A claimed edge (a backtest, a cross-validated return): tell the user first that it is unverified;
+  then one skeptic per test - out of time, clustered by series or event, at prices that could really
+  have been paid, and corrected for every variant tried - then a judge. Nothing goes live, and no
+  stake grows, until the judge's verdict is in.
 - Competing methods: two analysts, a skeptic, a judge.
 - Many screens: one reviewer per group with its own browser, then a ranker who opens every image.
 

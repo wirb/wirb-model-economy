@@ -1,6 +1,6 @@
 {
   "name": "wirb-model-economy",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Delegating work to subagents: which model each subagent gets, the brief it receives, and the review loop that checks its work.",
   "author": {
     "name": "wirb"

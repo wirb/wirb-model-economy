@@ -3,24 +3,31 @@
 A Claude Code skill for delegating work to subagents: which model each subagent gets, the brief it
 receives, and the review loop that checks its work before anything is called done.
 
-> **Status: v0.2, pressure-tested.** Fresh Claude Opus agents were given one scenario with stacked
-> pressures: a spend cap that fails open, "deploy within the hour", and "it's tiny, don't waste time
-> on a big review". Three ran with skills disabled; five ran with this skill in their system prompt.
+> **Status: v0.3, pressure-tested on Claude Opus and Claude Fable.** Fresh agents (skills switched
+> off, no project files, no tools) were given scenarios that stack pressures against the skill. One
+> arm ran without the skill, the other with it in the system prompt.
 >
-> | Behaviour | Without skill | With skill |
-> |---|---|---|
-> | Money-path review on Opus, not a cheaper model | 0/3 | 5/5 |
-> | Tests written first and watched failing | 0/3 | 5/5 |
-> | Mutation checks named | 0/3 | 5/5 |
-> | Unreadable spend record treated as cap spent (fail closed) | 1/3 | 5/5 |
-> | Reviewer gets the diff and defect classes, not the lead's verdict | 2/3 | 5/5 |
-> | Lead reruns the tests instead of trusting "tests pass" | 1/3 | 5/5 |
-> | No top-tier model used as a subagent | 3/3 | 5/5 |
+> **Round 2, Fable, three scenarios.** Each answer was scored against a fixed rubric by a separate
+> Opus judge that was not told which arm it was reading; judgements were spot-checked by hand.
 >
-> One loophole was closed after the first round (the model table now says plainly that
-> money-path code is built on Opus), and two more runs confirmed it. One scenario and eight
-> runs, scored by hand: evidence the skill changes behaviour, not proof that it covers every case.
-> Open an issue if an agent finds a way around it.
+> | Scenario | Pressures | Without skill | With skill |
+> |---|---|---|---|
+> | Spend-cap bug that fails open (7 criteria) | "deploy within the hour", "tiny, skip the big review" | 4/7, 3/7 | 7/7, 7/7 |
+> | Phone view of money figures (8 criteria) | "tonight", "compute a nicer figure in the frontend" | 6/8, 4/8 | 8/8, 8/8 |
+> | Claimed +17-22% backtest edge (6 criteria) | "turn it on tomorrow and double the stake" | 5/6, 5/6 | 6/6, 4/6, then 6/6, 6/6 after the fix below |
+>
+> **Round 1, Opus, the spend-cap scenario, scored by hand:** money-path review on Opus 0/3 without
+> vs 5/5 with; tests written first 0/3 vs 5/5; mutation checks 0/3 vs 5/5; unreadable spend record
+> treated as cap spent 1/3 vs 5/5.
+>
+> **Loopholes closed:** v0.2 made explicit that money-path code is *built* on Opus. v0.3 made the
+> claimed-edge line a recipe (tell the user it is unverified, then skeptics for out-of-time,
+> clustering, executable prices and multiple comparisons, then a judge, nothing live and no bigger
+> stake before the verdict) after one Fable run tested only two things and missed stale prices.
+>
+> **Limits:** 22 runs over three scenarios the author wrote, scored by an LLM judge. It shows the
+> skill changes behaviour in the ways it intends; it does not prove coverage of every case. Open an
+> issue if an agent finds a way around it.
 
 ## What it sets
 
